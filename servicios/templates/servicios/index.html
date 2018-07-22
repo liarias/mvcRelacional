@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todos Mis Servicios</title>
+
+</head>
+<body>
+	<header>
+		<h1>Todos mis Servicios</h1>
+	</header>
+	<nav>
+		
+	</nav>
+
+	<div>
+		<h2>Usuarios</h2>
+		{% for persona in personas %}
+		<h2>{{persona.nombre}} {{persona.apellido}}</h2>
+		<div>
+			<h3>Servicios registrados:</h3>
+			<ul>
+			{% for servicio in persona.servicios.all %}
+				<li>{{servicio.nombre}}</li>
+			{% endfor %}
+			</ul>
+		</div>
+		{% endfor %}
+	</div>
+
+
+</body>
+</html>
