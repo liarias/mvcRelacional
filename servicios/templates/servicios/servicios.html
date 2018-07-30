@@ -1,0 +1,29 @@
+{% extends 'servicios/base.html' %}
+
+{% block content %}
+    <h3>Servicios</h3>
+    <table id="example" class="display" style="width:100%">
+		<thead>
+			<tr>
+				<th>Nombres</th>
+				<th>Servicio</th>
+				<th>Ciudad</th>
+				<th>Fecha</th>
+				<th>Numero</th>
+			</tr>
+		</thead>
+		<tbody>
+		{%for dato in datos%}
+			<tr>
+				<td>{{dato.nombre}}</td>
+				<td>{{dato.servicio}}</td>
+				<td>{{dato.ciudad}}</td>
+				<td>{{dato.fecha}}</td>
+				<td>{{dato.numero}}</td>
+			</tr>
+		{%endfor%}
+		</tbody>
+	</table>
+
+	<table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">$(document).ready(</code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$(</code><code class="js string">'#example'</code><code class="js plain">).DataTable();</code></div><div class="line number3 index2 alt2"><code class="js plain">} );</code></div></div></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2" style="display: none;">1</div></td><td class="code"><div class="container" style="display: none;"><div class="line number1 index0 alt2" style="display: none;">&nbsp;</div></div></td></tr></tbody></table>
+{% endblock %}
