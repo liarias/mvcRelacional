@@ -1,7 +1,12 @@
 from django.db import models
 
+class Contrato(models.Model):
+	direccion=models.CharField(max_length=500)
+	fecha=models.DateField()
+
 class Servicio(models.Model):
 	nombre = models.CharField(max_length=100)
+	contrato = models.ManyToManyField(Contrato)
 
 class Persona(models.Model):
 	nombre = models.CharField(max_length=50)
@@ -14,3 +19,6 @@ class datosCsv(models.Model):
 	ciudad=models.CharField(max_length=100)
 	fecha=models.DateField()
 	numero=models.IntegerField()
+
+
+
