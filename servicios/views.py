@@ -15,30 +15,8 @@ from rest_framework import renderers
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework import generics
+from rest_framework.renderers import TemplateHTMLRenderer
 
-
-class ServicioViewSet(viewsets.ModelViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-
-    Additionally we also provide an extra `highlight` action.
-    """
-    queryset = Servicio.objects.all()
-    serializer_class = ServicioSerializer
-
-
-class PersonaViewSet(viewsets.ModelViewSet):
-    """
-    This viewset automatically provides `list` and `detail` actions.
-    """
-    queryset = Persona.objects.all()
-    serializer_class = PersonaSerializer
-
-
-
-
-########
 def personaListar(request):
 	personas=Persona.objects.all()
 	return render(request,'servicios/usuario.html',{'personas':personas})
@@ -59,14 +37,13 @@ def servicioModificar(request,pk):
     servicio=Persona.objects.get(pk=pk)
     return render(request,'servicios/servicioModificar.html',{'servicio':servicio})
 
-
-
+@permission_classes((permissions.AllowAny,))
 class PersonaListar(APIView):
-    
-    def get(self, request, format=None):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'servicios/usuario.html'
+    def get(self, request, format=None):            
         personas = Persona.objects.all()
-        serializer = PersonaSerializer(personas, many=True)
-        return Response(serializer.data)
+        return Response({"personas":personas})
 
     def post(self, request, format=None):
         serializer = PersonaSerializer(data=request.data)
@@ -74,13 +51,14 @@ class PersonaListar(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+@permission_classes((permissions.AllowAny,))
 class ServicioListar(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'servicios/servicios.html'
     
     def get(self, request, format=None):
         servicios = Servicio.objects.all()
-        serializer = ServicioSerializer(servicios, many=True)
-        return Response(serializer.data)
+        return Response({"servicios":servicios})
 
     def post(self, request, format=None):
         serializer = ServicioSerializer(data=request.data)
@@ -101,9 +79,7 @@ class DetalleServicio(APIView):
     def get(self, request, pk, format=None):
 
         servicio = self.get_object(pk)
-        serializer = ServicioSerializer(servicio)
-        print("AHHHHHHHHHHHHHHHHHHHH")
-        return Response(serializer.data)
+        return Response(servicio)
     def put(self, request, pk, format=None):
         servicio = self.get_object(pk)
         serializer = ServicioSerializer(servicio, data=request.data)

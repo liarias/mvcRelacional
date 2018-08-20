@@ -6,7 +6,17 @@
 		<div class="container">
 			
 			<div class="prueba" >
-				 <img src="https://vignette.wikia.nocookie.net/laruedadeltiempo/images/5/56/Interrogacion.jpg/revision/latest?cb=20130808205644&path-prefix=es" class="rounded-circle"> 
+				 <img src="https://vignette.wikia.nocookie.net/laruedadeltiempo/images/5/56/Interrogacion.jpg/revision/latest?cb=20130808205644&path-prefix=es" class="rounded-circle">
+				 <form action="{% url 'det' pk=servicio.pk %}" method="POST">
+				    {% csrf_token %}
+				    {% render_form serializer %}
+
+				    
+				    <input type="submit" value="Save">
+
+
+
+				</form>  
 				<h4>{{persona.nombre}} {{persona.apellido}}</h4>				
 				<h5>Servicios registrados:</h5>
 				<ul>

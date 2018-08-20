@@ -5,7 +5,7 @@ from rest_framework import serializers
 class ServicioSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Servicio
-		fields = ( 'id', 'nombre','contrato')
+		fields = ( 'id', 'nombre','ciudad','direccion','fecha')
 
 
 class PersonaSerializer(serializers.ModelSerializer):

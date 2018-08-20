@@ -1,35 +1,22 @@
 {% extends 'servicios/base.html' %}
-
+{% load rest_framework %}
 {% block content %}
     <h3>Servicio</h3>
 	
 	<div class="container">
 		<h3>Usuario: </h3>
-		<table border="0" id="datatable"  cellpadding="5" cellspacing="5" >
-	   <thead>
-	           <tr>
-	                <th></th>
-	               <th></th>
-	           </tr>
-	 </thead>
-	 <tbody>
-	          <tr>
-	                <td>Usuario:</td>
-	                <td>{{servicio.persona}}</td>
-	         </tr>
-	          <tr>
-	                <th>Fecha de registro: </th>
-	                <td>4</td>
-	         </tr>
-	         <tr>
-	                <th>direccion: </th>
-	                <td>4</td>
-	         </tr>
-	 </tbody>
-	</table> 
-	<button>Guardar</button>			
-	</div>
+		   
+{% endblock %}
+{% block section %}
+<h3> Servicio Seleccionado</h3>
+{% if servicio.servicio %}
+<h1>Servicio - {{ servicio.servicio }}</h1>
 
+<form action="{% url 'det' pk=servicio.pk %}" method="POST">
+    {% csrf_token %}
+    {% render_form serializer %}
+    <input type="submit" value="Save">
+</form> 
 
-    
+{% endif %}    
 {% endblock %}
