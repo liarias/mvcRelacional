@@ -1,14 +1,19 @@
 import csv
 import os
-from servicios.models import datosCsv
+from servicios.models import *
 with open('todosmisservicios.csv',newline='') as csvfile:
- spamreader = csv.reader(csvfile)
- for row in spamreader:
-  lista = row[0].split(';')
-  p = datosCsv()
-  p.nombre = lista[0]
-  p.servicio = lista[1]
-  p.ciudad = lista[2]
-  p.fecha = lista[3]
-  p.numero = lista[4]
-  p.save()
+	spamreader = csv.reader(csvfile)
+	for row in spamreader:
+		lista = row[0].split(';')
+		s = Servicio()
+		s.nombre = lista[1]
+		s.ciudad = lista[2]
+		s.direccion = ''
+		s.fecha = lista[3]
+		s.pago = lista[4]
+		s.save()
+		p = Persona()
+		p.nombre = lista[0]
+		p.save() 
+		p.servicios.add(s)
+			

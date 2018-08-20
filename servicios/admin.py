@@ -3,4 +3,3 @@ from .models import *
 
 admin.site.register(Persona)
 admin.site.register(Servicio)
-admin.site.register(Contrato)

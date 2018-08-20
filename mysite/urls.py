@@ -15,13 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path,include,re_path
+from django.urls import path,include
 
-from servicios import views
-from django.contrib.auth.models import User
-from rest_framework import routers
 
-from rest_framework.urlpatterns import format_suffix_patterns
 
 # Routers provide an easy way of automatically determining the URL conf.
 # Wire up our API using automatic URL routing.

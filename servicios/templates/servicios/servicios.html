@@ -9,17 +9,22 @@
 				<th>Servicio</th>
 				<th>Ciudad</th>
 				<th>Fecha</th>
-				<th>Numero</th>
+				<th>Direccion</th>
+				<th>Pago</th>
 			</tr>
 		</thead>
 		<tbody>
-		{%for dato in datos%}
+		{%for persona in personas%}
 			<tr>
-				<td>{{dato.nombre}}</td>
-				<td>{{dato.servicio}}</td>
-				<td>{{dato.ciudad}}</td>
-				<td>{{dato.fecha}}</td>
-				<td>{{dato.numero}}</td>
+				<td>{{persona.nombre}}</td>
+				{% for servicio in persona.servicios.all %}
+					<td>{{servicio.nombre}}</td>					
+						<td>{{servicio.ciudad}}</td>
+						<td>{{servicio.fecha}}</td>
+						<td>{{servicio.direccion}}</td>
+						<td>{{servicio.pago}}</td>
+					
+				{% endfor %}
 			</tr>
 		{%endfor%}
 		</tbody>
