@@ -1,5 +1,5 @@
 {% extends 'servicios/base.html' %}
-
+{%load staticfiles%}
 {% block content %}
 {% load rest_framework %}
     <h3>Modificar Datos</h3>
@@ -12,8 +12,9 @@
 	
 	<input type="submit" value="Guardar">
 	
-	</form> 
-	<ul>
-	</ul>	
+	</form>
+	<form action="{% url 'eliminar' pk=servicio.pk %}" method="DELETE">
+		<input type="submit" value="Eliminar">
+	</form>
 </div>	
 {% endblock %}

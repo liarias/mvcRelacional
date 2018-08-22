@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^servicio/crear/(?P<pk>[0-9]+)/$', views.DetalleServicio.as_view(), name="servicioCrear"),
     url(r'^servicio/modificar/(?P<pk>[0-9]+)/$', views.DetalleServicio.as_view(), name="servicioModificar"),
     url(r'^servicio/crear/(?P<pk>[0-9]+)/$', views.ServicioListar.as_view(), name="crearServicio"),
+    url(r'^servicio/eliminar/(?P<pk>[0-9]+)/$', views.DetalleServicio.as_view(), name="eliminar"),
     path(r'servicio/modificado/', views.modificado, name="modificado"),
     path(r'iniciarSesion/',views.iniciarSesion,name='iniciarSesion'),
 	path(r'SalirSesion/',views.salirSesion,name='salirSesion'),

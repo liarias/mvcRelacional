@@ -89,11 +89,11 @@ class DetalleServicio(APIView):
     template_name = 'servicios/servicioModificar.html'
     def get(self, request, pk, format=None):
         servicio= Servicio.objects.get(pk=pk)
-        print(servicio)
+        print(request)
         serializer = ServicioSerializer(servicio)
         return Response({'serializer':serializer,'servicio': servicio})
 
-    def put(self, request, pk, format=None):
+    def post(self, request, pk, format=None):
         print("entra")
         servicio= Servicio.objects.get(pk=pk)
         serializer = ServicioSerializer(servicio, data=request.data)
@@ -103,6 +103,8 @@ class DetalleServicio(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
+        renderer_classes = [TemplateHTMLRenderer]
+        template_name = 'servicios/servicioModificar.html'
         servicio = self.get_object(pk)
         servicio.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
