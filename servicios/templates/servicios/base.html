@@ -1,4 +1,4 @@
- {% load staticfiles %}
+{% load staticfiles %}
 {% load rest_framework %}
 <html>
 <head>
@@ -26,11 +26,19 @@
       <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">...</a>
+      <a class="nav-link" href="#">             </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Nosotros</a>
-    </li>
+    {% if request.user.is_authenticated %}
+      <div class="p-2 align-self-center">
+        <a href="{% url 'iniciarSesion' %}"><span class="icon-users"></span>{{request.user.username}}</a> │ <a href="{% url 'salirSesion' %}">Cerrar Sesión</a>
+      </div>
+    {% else %}
+      <div class="p-2 align-self-center">
+        <a href="{% url 'iniciarSesion' %}"><span class="icon-users"></span>Iniciar sesión</a> 
+      </div>
+    {% endif %}
+    
+
   </ul>
 </nav>
 

@@ -1,6 +1,7 @@
 from django.db import models
 
 class Servicio(models.Model):
+	owner = models.ForeignKey('Persona', related_name='persona', on_delete=models.CASCADE, default='')
 	nombre = models.CharField(max_length=100)
 	ciudad=models.CharField(max_length=500, default='')
 	direccion=models.CharField(max_length=500, default='')
@@ -11,9 +12,10 @@ class Servicio(models.Model):
 		    super(Servicio, self).save(*args, **kwargs)
 		# process self.parent_subject (should be called ...subjects, semantically)
 		super(Servicio, self).save(*args, **kwargs)
+	
 	def personas(self):
    		return self.persona_set.filter(servicio = self.pk)
-
+   		
 class Persona(models.Model):
 	nombre = models.CharField(max_length=50)
 	servicios = models.ManyToManyField(Servicio)

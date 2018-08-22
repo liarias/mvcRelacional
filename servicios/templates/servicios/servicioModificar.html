@@ -1,31 +1,19 @@
 {% extends 'servicios/base.html' %}
 
 {% block content %}
-    <h3>Usuarios</h3>
-	{% for persona in personas %}
-		<div class="container">
-			
-			<div class="prueba" >
-				 <img src="https://vignette.wikia.nocookie.net/laruedadeltiempo/images/5/56/Interrogacion.jpg/revision/latest?cb=20130808205644&path-prefix=es" class="rounded-circle">
-				 <form action="{% url 'det' pk=servicio.pk %}" method="POST">
-				    {% csrf_token %}
-				    {% render_form serializer %}
-
-				    
-				    <input type="submit" value="Save">
-
-
-
-				</form>  
-				<h4>{{persona.nombre}} {{persona.apellido}}</h4>				
-				<h5>Servicios registrados:</h5>
-				<ul>
-					{% for servicio in persona.servicios.all %}
-						<li>{{servicio.nombre}}</li>
-					{% endfor %}
-				</ul>	
-			</div>				
-			
-		</div>
-    {% endfor %}
+{% load rest_framework %}
+    <h3>Modificar Datos</h3>
+	<div class="container">
+	
+	<form action="{% url 'servicioModificar' pk=servicio.pk %}" method="POST">
+	
+	{% render_form serializer %}
+	{% csrf_token %}
+	
+	<input type="submit" value="Guardar">
+	
+	</form> 
+	<ul>
+	</ul>	
+</div>	
 {% endblock %}

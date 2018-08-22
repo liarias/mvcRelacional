@@ -7,7 +7,7 @@
 			
 			<div class="prueba" >
 				 <img src="https://vignette.wikia.nocookie.net/laruedadeltiempo/images/5/56/Interrogacion.jpg/revision/latest?cb=20130808205644&path-prefix=es" class="rounded-circle"> 
-				<a href="{% url 'detallePersona' pk=persona.pk %}">{{persona.nombre}} {{persona.apellido}}</a>				
+				<a href="{% url 'personaDetalle' pk=persona.pk %}">{{persona.nombre}} {{persona.apellido}}</a>				
 				<h5>Servicios registrados:</h5>
 				<ul>
 					{% for servicio in persona.servicios.all %}
